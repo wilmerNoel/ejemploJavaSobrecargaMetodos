@@ -21,13 +21,17 @@ public class Automovil {
     private Persona conductor;
     private Rueda[] ruedas;
 
+    private static int ultimoId;
+
     public static final int VELOCIDAD_MAXIMA_CARRETERA = 90;
     public static final int VELOCIDAD_MINIMA_CARRETERA = 45;
 
     public Automovil() {
+        this.id = ++ultimoId;
     }
 
     public Automovil(String fabricante, String modelo) {
+        this();
         this.fabricante = fabricante;
         this.modelo = modelo;
     }
@@ -50,6 +54,12 @@ public class Automovil {
     public Automovil(String fabricante, String modelo, Color color, Motor motor, Estanque capacidadEstanque, TipoAutomovil tipo) {
         this(fabricante, modelo, color, motor, capacidadEstanque);
         this.tipo = tipo;
+    }
+
+    public Automovil(String fabricante, String modelo, Color color, Motor motor, Estanque estanque, TipoAutomovil tipo, Persona conductor, Rueda[] ruedas) {
+        this(fabricante, modelo, color, motor, estanque, tipo);
+        this.conductor = conductor;
+        this.ruedas = ruedas;
     }
 
     public int getId() {
@@ -126,13 +136,14 @@ public class Automovil {
 
     @Override
     public String toString() {
-        return "id=" + id
-                + "\nfabricante=" + fabricante
-                + "\n modelo=" + modelo
-                + "\ncolor=" + color
-                + "\nmotor=" + motor.getTipo()
-                + "\ncapacidadEstanque=" + estanque.getCapacidad()
-                + "\ntipo=" + tipo;
+        return "id=................... " + id
+                + "\nfabricante=........... " + fabricante
+                + "\nmodelo=............... " + modelo
+                + "\ncolor=................ " + color
+                + "\nmotor=................ " + motor.getTipo()
+                + "\ncapacidadEstanque=.... " + estanque.getCapacidad()
+                + "\ntipo=................. " + tipo
+                + "\nCondutor=............. " + conductor + "\n";
     }
 
     public double calcularConsumo(int km, int porcentajeConsumido) {
